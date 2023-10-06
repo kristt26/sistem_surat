@@ -7,12 +7,12 @@ angular.module('apps', [
     'message.service',
     'ngLocale',
     'datatables',
+    // 'ui.router',
+    'ui.select2',
     // 'cur.$mask',
     'ngAnimate',
     'ngSanitize',
-    'ui.router',
-    'ui.select2',
-    "component"
+    // "component"
 
 ])
 
