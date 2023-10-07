@@ -13,7 +13,8 @@
                     <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Unit Kerja</a></li>
                 </ul>
             </li>
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-envelope-square"></i><span class="app-menu__label">Surat</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-envelope-square
+            "></i><span class="app-menu__label">Surat</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Surat Masuk</a></li>
                     <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Surat Keluar</a></li>
