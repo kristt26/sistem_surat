@@ -20,14 +20,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/styles.css">
     <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/libs/fontawesome/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="app sidebar-mini rtl" ng-controller="indexController">
     <!-- Navbar-->
     <header class="app-header"><a class="app-header__logo" href="index.html">Vali</a>
-        <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+        <!-- Sidebar toggle button-->
+        <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
         <!-- Navbar Right Menu-->
         <ul class="app-nav">
             <li class="app-search">
@@ -97,18 +100,14 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-dashboard"></i> <?= $title?></h1>
+                <h1><i class="<?= $icon?>"></i> <?= $title?></h1>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="#"><?= $title?></a></li>
             </ul>
         </div>
-        <?php
-        if (isset($_view) && $_view) {
-            echo $_view;
-        }
-        ?>
+        <?= $this->renderSection('content') ?>
     </main>
     <!-- Essential javascripts for application to work-->
     <script src="<?= base_url() ?>assets/libs/jquery/dist/jquery.min.js"></script>
@@ -119,7 +118,7 @@
     <script src="<?= base_url() ?>assets/app/services/helper.services.js"></script>
     <script src="<?= base_url() ?>assets/app/services/admin.services.js"></script>
     <script src="<?= base_url() ?>assets/app/services/auth.services.js"></script>
-    <script src="<?= base_url() ?>assets/app/services/message.services.js"></script>
+    <script src="<?= base_url() ?>assets/app/services/pesan.services.js"></script>
     <script src="<?= base_url() ?>assets/app/controllers/admin.controllers.js"></script>
     <script src="<?= base_url() ?>assets/libs/angular-base64-upload/dist/angular-base64-upload.min.js"></script>
     <script src="<?= base_url() ?>assets/libs/angular-locale_id-id.js"></script>
@@ -129,6 +128,7 @@
     <script src="<?= base_url() ?>/assets/libs/datatables/dataTables.responsive.min.js"></script>
     <script src="<?= base_url() ?>/assets/libs/datatables/btn.js"></script>
     <script src="<?= base_url() ?>/assets/libs/datatables/print.js"></script>
+    <script src="<?= base_url() ?>/assets/libs/loading/dist/loadingoverlay.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="<?= base_url() ?>assets/libs/angular-ui-select2/src/select2.js"></script>
@@ -139,6 +139,7 @@
     <script src="<?= base_url() ?>assets/js/main.js"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="<?= base_url() ?>assets/js/plugins/pace.min.js"></script>
+    <script src="<?= base_url() ?>/assets/libs/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="<?= base_url() ?>assets/js/plugins/chart.js"></script>
 
