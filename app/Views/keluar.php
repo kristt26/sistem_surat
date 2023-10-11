@@ -1,11 +1,11 @@
 <?= $this->extend('layout') ?>
 
 <?= $this->section('content') ?>
-<div class="row" ng-controller="masukController">
+<div class="row" ng-controller="keluarController">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h4>Daftar Surat Masuk</h4>
+                <h4>Daftar Surat Keluar</h4>
                 <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modelId"><i class="fa fa-plus" aria-hidden="true"></i> Tambah</button>
             </div>
             <div class="card-body">
@@ -18,25 +18,25 @@
                                 <th>No Surat</th>
                                 <th>Perihal</th>
                                 <th>Sifat Surat</th>
-                                <th>Pengirim</th>
+                                <th>Tujuan</th>
                                 <th>Jenis Surat</th>
                                 <th width="13%"><i class="fa fa-cogs" aria-hidden="true"></i></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in datas.masuk">
+                            <tr ng-repeat="item in datas.keluar">
                                 <td>{{$index+1}}</td>
                                 <td>{{item.tanggal | date: "d MMMM y"}}</td>
                                 <td>{{item.no_surat}}</td>
                                 <td>{{item.perihal}}</td>
                                 <td>{{item.sifat_surat}}</td>
-                                <td>{{item.pengirim}}</td>
+                                <td>{{item.tujuan}}</td>
                                 <td>{{item.nama_jenis}}</td>
                                 <td>
                                     <button class="btn btn-warning btn-circle" ng-click="edit(item)"><i class="fas fa-edit"></i></button>
                                     <button class="btn btn-danger btn-circle" ng-click="delete(item)"><i class="fas fa-trash"></i></button>
                                     <button class="btn btn-info btn-circle" ng-click="showFile(item)"><i class="fas fa-file-pdf"></i></button>
-                                    <button class="btn btn-secondary btn-circle" ng-click="createDispo(item)"><i class="fas fa-pencil-alt"></i></button>
+                                    <!-- <button class="btn btn-secondary btn-circle" ng-click="createDispo(item)"><i class="fas fa-pencil-alt"></i></button> -->
                                     <!-- <button class="btn btn-primary btn-circle" ng-click="createDispo(item)"><i class="fas fa-eye"></i></button> -->
                                 </td>
                             </tr>
@@ -50,7 +50,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Surat masuk</h5>
+                    <h5 class="modal-title">Tambah Surat keluar</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -84,15 +84,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="control-label col-md-3">Pengirim</label>
+                                    <label class="control-label col-md-3">Tujuan Surat</label>
                                     <div class="col-md-9">
-                                        <input class="form-control" type="text" ng-model="model.pengirim" required>
+                                        <input class="form-control" type="text" ng-model="model.tujuan" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="control-label col-md-3">Isi Surat</label>
+                                    <label class="control-label col-md-3">Alamat</label>
                                     <div class="col-md-9">
-                                        <textarea class="form-control" rows="4" ng-model="model.isi_surat" required></textarea>
+                                        <textarea class="form-control" rows="4" ng-model="model.alamat" required></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">

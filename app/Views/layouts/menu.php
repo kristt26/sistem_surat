@@ -11,6 +11,7 @@
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="<?= base_url('jenis'); ?>"><i class="icon fa fa-circle-o"></i> Jenis Surat</a></li>
                 <li><a class="treeview-item" href="<?= base_url('unit'); ?>"><i class="icon fa fa-circle-o"></i> Unit Kerja</a></li>
+                <li><a class="treeview-item" href="<?= base_url('user'); ?>"><i class="icon fa fa-circle-o"></i> Manajemen User</a></li>
             </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-envelope-square

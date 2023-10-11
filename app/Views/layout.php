@@ -24,6 +24,7 @@
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/libs/fontawesome/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/libs/select2/select2.min.css">
 </head>
 
 <body class="app sidebar-mini rtl" ng-controller="indexController">
@@ -130,7 +131,7 @@
     <script src="<?= base_url() ?>/assets/libs/datatables/print.js"></script>
     <script src="<?= base_url() ?>/assets/libs/loading/dist/loadingoverlay.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="<?= base_url() ?>assets/libs/select2/select2.min.js"></script>
     <script src="<?= base_url() ?>assets/libs/angular-ui-select2/src/select2.js"></script>
 
 

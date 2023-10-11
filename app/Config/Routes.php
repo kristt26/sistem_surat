@@ -24,6 +24,7 @@ $routes->group('surat_masuk', function($routes){
     $routes->get('', 'Masuk::index');
     $routes->get('read', 'Masuk::read');
     $routes->post('post', 'Masuk::post');
+    $routes->post('dispo', 'Masuk::dispo');
     $routes->put('put', 'Masuk::put');
     $routes->delete('delete/(:any)', 'Masuk::delete/$1');
 });
@@ -40,4 +41,11 @@ $routes->group('laporan', function($routes){
     $routes->post('post', 'Laporan::post');
     $routes->put('put', 'Laporan::put');
     $routes->delete('delete/(:any)', 'Laporan::delete/$1');
+});
+$routes->group('user', function($routes){
+    $routes->get('', 'User::index');
+    $routes->get('read', 'User::read');
+    $routes->post('post', 'User::post');
+    $routes->put('put', 'User::put');
+    $routes->delete('delete/(:any)', 'User::delete/$1');
 });
