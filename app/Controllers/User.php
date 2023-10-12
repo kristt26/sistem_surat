@@ -33,6 +33,7 @@ class User extends BaseController
         $item = $this->request->getJSON();
         try {
             $this->conn->transBegin();
+            $item->password = password_hash($item->password, PASSWORD_DEFAULT);
             $this->user->insert($item);
             $item->id = $this->user->getInsertID();
             $this->unit->update($item->unit_kerja_id, ['id_user'=>$item->id]);
@@ -57,8 +58,9 @@ class User extends BaseController
     public function delete($id = null)
     {
         try {
+            $this->unit->where('id_user', $id)->update(null, ['id_user'=>null]);
             $this->user->delete($id);
-            return redirect()->to(base_url('user'));
+            return $this->respond(true);
         } catch (\Throwable $th) {
             return $th->getMessage();
         }

@@ -6,6 +6,8 @@ angular.module('admin.service', [])
     .factory('masukServices', masukServices)
     .factory('keluarServices', keluarServices)
     .factory('userServices', userServices)
+    .factory('laporanServices', laporanServices)
+    .factory('disposisiServices', disposisiServices)
     ;
 
 function dashboardServices($http, $q, helperServices, AuthService) {
@@ -488,7 +490,7 @@ function userServices($http, $q, helperServices, AuthService, pesan) {
             headers: AuthService.getHeader()
         }).then(
             (res) => {
-                service.data.user = res.data;
+                service.data = res.data;
                 def.resolve(res.data);
             },
             (err) => {
@@ -509,7 +511,7 @@ function userServices($http, $q, helperServices, AuthService, pesan) {
             headers: AuthService.getHeader()
         }).then(
             (res) => {
-                service.data.push(res.data);
+                service.data.user.push(res.data);
                 def.resolve(res.data);
             },
             (err) => {
@@ -550,8 +552,8 @@ function userServices($http, $q, helperServices, AuthService, pesan) {
             headers: AuthService.getHeader()
         }).then(
             (res) => {
-                var index = service.data.indexOf(param);
-                service.data.splice(index, 1);
+                var index = service.data.user.indexOf(param);
+                service.data.user.splice(index, 1);
                 def.resolve(res.data);
             },
             (err) => {
@@ -562,4 +564,60 @@ function userServices($http, $q, helperServices, AuthService, pesan) {
         return def.promise;
     }
 
+}
+
+function laporanServices($http, $q, helperServices, AuthService, pesan) {
+    var controller = helperServices.url + 'laporan/';
+    var service = {};
+    service.data = [];
+    return {
+        get: get,
+    };
+
+    function get(param) {
+        var def = $q.defer();
+        $http({
+            method: 'get',
+            url: controller + 'read/' + param,
+            headers: AuthService.getHeader()
+        }).then(
+            (res) => {
+                def.resolve(res.data);
+            },
+            (err) => {
+                pesan.error(err.data.message);
+                def.reject(err);
+                $.LoadingOverlay('hide');
+            }
+        );
+        return def.promise;
+    }
+}
+
+function disposisiServices($http, $q, helperServices, AuthService, pesan) {
+    var controller = helperServices.url + 'disposisi/';
+    var service = {};
+    service.data = [];
+    return {
+        get: get,
+    };
+
+    function get() {
+        var def = $q.defer();
+        $http({
+            method: 'get',
+            url: controller + 'read',
+            headers: AuthService.getHeader()
+        }).then(
+            (res) => {
+                def.resolve(res.data);
+            },
+            (err) => {
+                pesan.error(err.data.message);
+                def.reject(err);
+                $.LoadingOverlay('hide');
+            }
+        );
+        return def.promise;
+    }
 }

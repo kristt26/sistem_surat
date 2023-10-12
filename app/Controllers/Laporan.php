@@ -3,59 +3,43 @@
 namespace App\Controllers;
 
 use App\Models\JenisModel;
+use App\Models\SuratKeluarModel;
+use App\Models\SuratMasukModel;
 
-class Jenis extends BaseController
+class Laporan extends BaseController
 {
-    protected $jenis;
+    protected $masuk;
+    protected $keluar;
     protected $conn;
-    public function __construct() {
-        $this->jenis = new JenisModel();
+    public function __construct()
+    {
+        $this->masuk = new SuratMasukModel();
+        $this->keluar = new SuratKeluarModel();
         $this->conn = \Config\Database::connect();
     }
     public function index()
     {
-        $data['title'] = "Jenis Surat";
-        $data['icon'] = "fas fa-mail-bulk";
-        return view('jenis', $data);
+        $data['title'] = "Laporan";
+        $data['icon'] = "fas fa-print";
+        return view('laporan', $data);
     }
 
-    public function read()
+    public function read($param = null)
     {
-        $data = $this->jenis->findAll();
+        if ($param == 'masuk') $data = $this->masuk->select("surat_masuk.*, jenis.nama_jenis")->join('jenis', 'jenis.id=surat_masuk.id_jenis')->findAll();
+        else $data = $this->keluar->select("surat_keluar.*, jenis.nama_jenis")->join('jenis', 'jenis.id=surat_keluar.id_jenis')->findAll();
         return $this->respond($data);
     }
-    public function post()
+
+    public function print($param = null)
     {
-        $item = $this->request->getJSON();
-        try {
-            $this->conn->transBegin();
-            $this->jenis->insert($item);
-            $item->id = $this->jenis->getInsertID();
-            if($this->conn->transStatus()){
-                $this->conn->transCommit();
-                return $this->respond($item);
-            }else throw new \Exception("Gagal simpan", 1);
-        } catch (\Throwable $th) {
-            return $this->fail($th->getMessage());
+        if ($param == 'masuk'){
+            $data['data'] = $this->masuk->select("surat_masuk.*, jenis.nama_jenis")->join('jenis', 'jenis.id=surat_masuk.id_jenis')->findAll();
+            return view('laporan/masuk', $data);
         }
-    }
-    public function put()
-    {
-        $item = $this->request->getJSON();
-        try {
-            $this->jenis->update($item->id, $item);
-            return redirect()->to(base_url('jenis'));
-        } catch (\Throwable $th) {
-            return $th->getMessage();
-        }
-    }
-    public function delete($id = null)
-    {
-        try {
-            $this->jenis->delete($id);
-            return redirect()->to(base_url('jenis'));
-        } catch (\Throwable $th) {
-            return $th->getMessage();
+        else{
+            $data['data'] = $this->keluar->select("surat_keluar.*, jenis.nama_jenis")->join('jenis', 'jenis.id=surat_keluar.id_jenis')->findAll();
+            return view('laporan/keluar', $data);
         }
     }
 }

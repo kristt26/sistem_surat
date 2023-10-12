@@ -6,6 +6,8 @@ angular.module('adminctrl', [])
     .controller('masukController', masukController)
     .controller('keluarController', keluarController)
     .controller('userController', userController)
+    .controller('laporanController', laporanController)
+    .controller('disposisiController', disposisiController)
     ;
 
 function dashboardController($scope, dashboardServices) {
@@ -272,4 +274,41 @@ function userController($scope, userServices, pesan) {
             })
         });
     }
+}
+
+function laporanController($scope, laporanServices, helperServices, pesan) {
+    $scope.$emit("SendUp", "Pembobotan Faktor");
+    $scope.datas = {};
+    $scope.model = {};
+    
+    $scope.getData = (param)=>{
+        $.LoadingOverlay('show');
+        laporanServices.get(param).then(res=>{
+            $scope.datas = res;
+            $.LoadingOverlay('hide');
+        })
+    }
+
+    $scope.print = (param)=>{
+        window.open(helperServices.url + "laporan/print/" + param,'_blank');
+    }
+    
+}
+
+function disposisiController($scope, disposisiServices, helperServices, pesan) {
+    $scope.$emit("SendUp", "Pembobotan Faktor");
+    $scope.datas = {};
+    $scope.model = {};
+    
+    $.LoadingOverlay('show');
+    disposisiServices.get().then(res=>{
+        $scope.datas = res;
+        $.LoadingOverlay('hide');
+    })
+    
+    $scope.showFile = (item)=>{
+        // $scope.dataFile = item.file;
+        window.open(helperServices.url + "assets/berkas/" + item.file, '_blank').focus();
+    }
+    
 }

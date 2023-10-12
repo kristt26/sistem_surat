@@ -13,5 +13,5 @@ class DispoModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['isi_disposisi', 'unit_kerja_id', 'surat_masuk_id'];
+    protected $allowedFields    = ['isi_disposisi', 'unit_kerja_id', 'surat_masuk_id', 'status'];
 }

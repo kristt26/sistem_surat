@@ -5,7 +5,12 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Home::index', ['filter' => 'auth']);
+$routes->group('auth', function($routes){
+    $routes->get('', 'Auth::index');
+    $routes->post('check', 'Auth::check');
+    $routes->get('logout', 'Auth::logout');
+});
 $routes->group('jenis', function($routes){
     $routes->get('', 'Jenis::index');
     $routes->get('read', 'Jenis::read');
@@ -37,10 +42,8 @@ $routes->group('surat_keluar', function($routes){
 });
 $routes->group('laporan', function($routes){
     $routes->get('', 'Laporan::index');
-    $routes->get('read', 'Laporan::read');
-    $routes->post('post', 'Laporan::post');
-    $routes->put('put', 'Laporan::put');
-    $routes->delete('delete/(:any)', 'Laporan::delete/$1');
+    $routes->get('read/(:any)', 'Laporan::read/$1');
+    $routes->get('print/(:any)', 'Laporan::print/$1');
 });
 $routes->group('user', function($routes){
     $routes->get('', 'User::index');
@@ -48,4 +51,12 @@ $routes->group('user', function($routes){
     $routes->post('post', 'User::post');
     $routes->put('put', 'User::put');
     $routes->delete('delete/(:any)', 'User::delete/$1');
+});
+
+$routes->group('disposisi', function($routes){
+    $routes->get('', 'Disposisi::index');
+    $routes->get('read', 'Disposisi::read');
+    $routes->post('post', 'Disposisi::post');
+    $routes->put('put', 'Disposisi::put');
+    $routes->delete('delete/(:any)', 'Disposisi::delete/$1');
 });

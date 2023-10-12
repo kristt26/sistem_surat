@@ -20,7 +20,7 @@ function AuthService($http, $q, helperServices, pesan) {
         var def = $q.defer();
         $http({
             method: 'POST',
-            url: helperServices.url + "/login/check",
+            url: helperServices.url + "/auth/check",
             data: user,
             headers: {
                 'Content-Type': 'application/json'

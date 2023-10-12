@@ -10,17 +10,6 @@ function loginController($scope, AuthService, helperServices) {
     $scope.login = ()=>{
         $.LoadingOverlay("show");
         AuthService.login($scope.model).then((res)=>{
-            if(res.length==1){
-                document.location.href= helperServices.url;
-            }else{
-                $.LoadingOverlay("hide");
-                $scope.role = res;
-                $(".modal").modal('show');
-            }
-        })
-    }
-    $scope.setRole = (item)=>{
-        AuthService.setRole(item).then((res)=>{
             document.location.href= helperServices.url;
         })
     }
